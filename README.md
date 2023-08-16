@@ -5,26 +5,26 @@ This is the Repository about the project "H-Sanity" for the Software architectur
 
 #Documentation
 
-#1. Problem definition:
+# 1. Problem definition:
 
 
 Nowadays the verification that the hotels in the city of Bogota approve the sanitary measures that are legally required of them is little known by the final client. 
 This can cause customers to stay in a hotel without knowing for sure if it complies with the sanitation measures, this implies that the customer may be at health risk while staying in a hotel with errors in the sanitation of its facilities.
 
 
-#2.Solution offered:
+# 2.Solution offered:
 
 
 The "H-Sanity" software allows to solve the above mentioned problem, through a web platform, where the client of the hotels in the city of Bogota will be able to visualize the sanitation guidelines that the hotel in which he/she wants to stay complies or not, in order to make an informed decision about it. 
 
 
-#3.End User:
+# 3.End User:
 
 
 The end user for this web platform will be the hotels in the city of Bogota and their clients.
 
 
-#4. utility:
+# 4. utility:
 
 
 The project at the level of return on investment, would be reflected in that the hotels to be exposed to their customers to see how neat are their headquarters, they improve and therefore in the platform this is reflected in the platform.
@@ -32,7 +32,7 @@ The project at the level of return on investment, would be reflected in that the
 As a consequence of the above, customers will stay more when they see that the hotels are very clean and comply with the sanitation guidelines, generating profits for the hotels.
 
 
-#5.antecedents
+# 5.antecedents
 
 App number 1: e-BlueInfo
 
@@ -53,7 +53,7 @@ Features:
 
 
 
-#6 Functional requirements:
+# 6. Functional requirements:
 
 
 6.1 Hotel and customer login.
@@ -90,7 +90,7 @@ location, contact (mobile).
 6.11 Rating about the health protocols for the hotels.
 
 
-#7. Non-functional requirements:
+# 7. Non-functional requirements:
 
 7.1:The availability of the platform must be all the time since the hotel business moves all the time.
 
