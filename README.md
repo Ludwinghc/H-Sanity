@@ -109,3 +109,5 @@ the scope of the platform is that users will only be able to see a hotel's sanit
 
 
 # 9. Selected technologies
+
+php
