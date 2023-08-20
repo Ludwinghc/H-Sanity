@@ -14,16 +14,28 @@ Segun el resultado y la valuacion de lineamientos tomados como satisfechos se ca
 * Verde: Cumple con los lineamientos necesarios
 
 # Objetivo General
-Brindar a los usuarios una informacion confiable a cerca de los lineamientos de sanidad con los que cuentan los hoteles en Bogota, mediante un software manjeado por una entidad guvernamantal el cual se encargara de dar una valoracion del establecimento.
+Brindar a usuarios que visiten la la plataforma ´H-Sanity´ una informacion confiable a cerca de los lineamientos de sanidad con los que cuentan los hoteles en Bogota, mediante un software manjeado por una entidad guvernamantal el cual se encargara de dar una valoracion del establecimento.
 
 # Objetivos Especificos
 ## Objetivos de Proyecto
-* Establecer un auditor que se encargue de hacer el registro y el checklikst de los lineamientos de sanidad por cada establecimiento
-* Clasificar los Hoteles segun la valoracion de un auditor
+* Crear una plataforma que se encargue de facilitar el registro y el checklikst de los lineamientos de sanidad de hoteles en la ciudad de Bogota
+* Clasificar los hoteles segun la valoracion de un auditor asignado por un ente externo 
 * Mostrar informacion general de los establecimientos registrados
 * Interaccion entre el usuario y el establecimeinto registrado
 ## Objetivos de Negocio
-* 
-* 
+* Elaborar y ejecutar un plan de revision de servicios en el sector hotelero con el fin de atraer y retener capital humano  
+* El crecimiento sostenible del turismo en La ciudad de Bogota, implementando las buenas practicas en el sector hotelero
+* Ofrecer un servicio al cliente que retroalimente continuamente la calidad del establecimiento
+
+# Requerimientos Funcionales
+1. La plataforma podra registrar usuarios corrientes y auditores
+2. La plataforma tendra un opcion de login de tipo usuario y tipo auditor
+3. Los tipos de usuarios de la plataforma tendran opcion de modificar algunos datos personales ya registrados
+4. Los usuario registrados en la plataforma tendran la alternativa de eliminar su perfil a travez de una confimacion de usuario y contraseña
+5. Solo los usuarios de tipo auditor podran registrar nuevos establecimientos hoteleros
+6. El registro de los hoteles solo podra ser efectivo despues de completar el proceso de auditoria implicito en los pasos a seguir de la plataforma
+7. El registro contara con una lista de chequeo de los lineamientos de sanidad satisfechos por el establecimiento, los cuales estaran previamente establecidos con items necesarios para el cumplimiento de la sanidad y buenas practica de los servicios en el sector hotelero
+8. Al finalizar el proceso de comporbacion de los lineamientos propuestos, se decidiran la clasificacion del comercio en cuestion
+9. 
 
 
