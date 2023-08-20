@@ -30,12 +30,13 @@ Brindar a usuarios que visiten la la plataforma ´H-Sanity´ una informacion con
 # Requerimientos Funcionales
 1. La plataforma podra registrar usuarios corrientes y auditores
 2. La plataforma tendra un opcion de login de tipo usuario y tipo auditor
-3. Los tipos de usuarios de la plataforma tendran opcion de modificar algunos datos personales ya registrados
-4. Los usuario registrados en la plataforma tendran la alternativa de eliminar su perfil a travez de una confimacion de usuario y contraseña
-5. Solo los usuarios de tipo auditor podran registrar nuevos establecimientos hoteleros
-6. El registro de los hoteles solo podra ser efectivo despues de completar el proceso de auditoria implicito en los pasos a seguir de la plataforma
-7. El registro contara con una lista de chequeo de los lineamientos de sanidad satisfechos por el establecimiento, los cuales estaran previamente establecidos con items necesarios para el cumplimiento de la sanidad y buenas practica de los servicios en el sector hotelero
-8. Al finalizar el proceso de comporbacion de los lineamientos propuestos, se decidiran la clasificacion del comercio en cuestion
-9. 
+3. La interfaz de usuario y auditor manejaran una disposicion y algunas opciones distintas 
+4. Los tipos de usuarios de la plataforma tendran opcion de modificar algunos datos personales ya registrados
+5. Los usuario registrados en la plataforma tendran la alternativa de eliminar su perfil a travez de una confimacion de usuario y contraseña
+6. Solo los usuarios de tipo auditor podran registrar nuevos establecimientos hoteleros
+7. El registro de los hoteles solo podra ser efectivo despues de completar el proceso de auditoria implicito en los pasos a seguir de la plataforma
+8. El registro contara con una lista de chequeo de los lineamientos de sanidad satisfechos por el establecimiento, lineamientos que estaran previamente establecidos con items necesarios para el cumplimiento de la sanidad y buenas practica de los servicios en el sector hotelero
+9. Al finalizar el proceso de comporbacion de los lineamientos propuestos y registro del establecimiento, se publicara una vista general  en el landing page de usuario y se clasificara segun la cantidad le lineamientos formalizados
+10. El landin page de usuario tendra la opcion de interactuar con la informacion de los establecimientos registrada en la plataforma 
 
 
