@@ -56,10 +56,16 @@ Features:
 # 6. Functional requirements:
 
 
-6.1 Hotel and customer login.
+6.1 Hotel Login.
 
 
-6.2 Creation of the hotel profile on the platform with information such as social reason, 
+6.2 Costumer Login.
+
+
+6.3 Auditor Login.
+
+
+6.4 Creation of the hotel profile on the platform with information such as social reason, 
 location, contact (mobile).
 
 
