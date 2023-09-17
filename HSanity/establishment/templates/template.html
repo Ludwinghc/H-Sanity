@@ -8,9 +8,10 @@
 
 <body>
     <ul>
-        <li><a href="inicio">Inicio</a></li>
-        <li><a href="registros">Registros</a></li>
-        <li><a href="contacto">Contacto</a></li>
+        <li><a href="{% url 'home' %}">Inicio</a></li>
+        <li><a href="registros">Mi perfil</a></li>
+        <li><a href="{% url 'view' %}">Establecimientos</a></li>
+        <li><a href="contacto">Setting</a></li>
     </ul>
 
     <div class="contenido">
