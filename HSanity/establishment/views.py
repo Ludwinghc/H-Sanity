@@ -7,3 +7,6 @@ def home(request):
 
 def view(request):
     return render(request, 'hotel/view.html')
+
+def create(request):
+    return render(request, 'hotel/create.html')
