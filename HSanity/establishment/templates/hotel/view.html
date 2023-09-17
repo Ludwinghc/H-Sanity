@@ -15,26 +15,32 @@ Inicio
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Imagen</th>
+                <th>Foto</th>
+                <th>Direccón</th>
                 <th>Contacto</th>
                 <th>Correo</th>
-                <th>Direccón</th>
+                <th>Website</th>
                 <th>Acción</th>
             <tr>
         </thead>
         <tbody>
+            {% for hotel in hoteles %}
             <tr>
-                <th>1</th>
-                <th>Hotel Tempus</th>
-                <th>Imagen</th>
-                <th>12345</th>
-                <th>hotel@gmail.com</th>
-                <th>Cra 12 # 20-1</th>
+                <th>{{ hotel.id }}</th>
+                <th>{{ hotel.name }}</th>
+                <th>
+                    <img src="{{ hotel.photo.url }}" height="100">
+                </th>
+                <th>{{ hotel.address }}</th>
+                <th>{{ hotel.contact }}</th>
+                <th>{{ hotel.mail }}</th>
+                <th>{{ hotel.website }}</th>
                 <th>
                     <a href="{% url 'edit' %}"><button>Editar</button></a> | 
                     <a href="#"><button>Deshabilitar</button></a>
                 </th>
             <tr>
+            {% endfor %}
         </tbody>
 </div>
 {% endblock %}
