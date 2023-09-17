@@ -10,3 +10,6 @@ def view(request):
 
 def create(request):
     return render(request, 'hotel/create.html')
+
+def edit(request):
+    return render(request, 'hotel/edit.html')
