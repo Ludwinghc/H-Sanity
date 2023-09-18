@@ -1,13 +1,12 @@
-<!DOCKTYPE html>
-<html lang="en">
-	<head>
-		<title>Form</title>
-	</head>
-	<body>
-		<form>
-            <label for="">Nombre: </label>
-			<input type="text" placeholder="Full Name" name="name">
-			<input type="submit">
-		</form>
-	</body>
-</html>
+<form>
+	{% csrf_token %}
+	{% for field in form %}
+	<div>
+		<label for="">{{ field.label }}</label>
+		<input type="{{ field.field.widget.input_type }}" 
+		placeholder="{{ field.label }}" name="{{ field.name }}">
+	</div>
+	<div>{{ fieds.error }}</div>
+	{% endfor %}
+	<input value="Registrar" type="submit" name="" id="">
+</form>

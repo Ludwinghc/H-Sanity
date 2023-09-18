@@ -8,5 +8,4 @@ urlpatterns = [
     path('hotel/view', views.view, name='view'),
     path('hotel/create', views.create, name='create'),
     path('hotel/edit', views.edit, name='edit'),
-    
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
