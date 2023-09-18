@@ -36,7 +36,7 @@ Inicio
                 <th>{{ hotel.mail }}</th>
                 <th>{{ hotel.website }}</th>
                 <th>
-                    <a href="{% url 'edit' %}"><button type="button"
+                    <a href="{% url 'edit' hotel.id %}"><button type="button"
                             class="btn btn-outline-secondary">Editar</button></a>
                     <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
                 </th>

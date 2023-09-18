@@ -19,5 +19,11 @@ def create(request):
         return redirect('view')
     return render(request, 'hotel/create.html', {'form' : form})
 
-def edit(request):
+def edit(request, id):
+    hotel = Establishment.objects.get(id=id)
+    form = EstablishmentForm(request.POST or None, request.FILES or None, instance=hotel)
+    if form.is_valid() and request.POST:
+        form.save()
+        return redirect('view')
+    return render(request, 'hotel/create.html', {'form' : form})
     return render(request, 'hotel/edit.html')
