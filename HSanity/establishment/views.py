@@ -16,7 +16,7 @@ def create(request):
     form = EstablishmentForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
-        return redirect('hoteles')
+        return redirect('view')
     return render(request, 'hotel/create.html', {'form' : form})
 
 def edit(request):
