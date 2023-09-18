@@ -6,41 +6,43 @@ Inicio
 
 {% block body %}
 
-<div>
+<div class="container-fluid"">
     <h1>Administar Establecimientos</h1>
-    <a href="{% url 'create' %}"><button>Registrar</button></a>
+    <a href="{% url 'create' %}"><button type="button" class="btn btn-primary">Registrar</button></a>
     <h3>Establecimientos Registrados</h3>
-    <table>
+</div>
+<div class="table-responsive">
+    <table class="table align-middle">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Foto</th>
-                <th>Direccón</th>
-                <th>Contacto</th>
-                <th>Correo</th>
-                <th>Website</th>
-                <th>Acción</th>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Direccón</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Website</th>
+                <th scope="col">Acción</th>
             <tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
             {% for hotel in hoteles %}
-            <tr>
+            <tr scope="row">
                 <th>{{ hotel.id }}</th>
                 <th>{{ hotel.name }}</th>
                 <th>
-                    <img src="{{ hotel.photo.url }}" height="100">
+                    <img src="{{ hotel.photo.url }}" height="80">
                 </th>
                 <th>{{ hotel.address }}</th>
                 <th>{{ hotel.contact }}</th>
                 <th>{{ hotel.mail }}</th>
                 <th>{{ hotel.website }}</th>
                 <th>
-                    <a href="{% url 'edit' %}"><button>Editar</button></a> | 
-                    <a href="#"><button>Deshabilitar</button></a>
+                    <a href="{% url 'edit' %}"><button type="button" class="btn btn-outline-secondary">Editar</button></a> |
+                    <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
                 </th>
             <tr>
-            {% endfor %}
+                {% endfor %}
         </tbody>
 </div>
 {% endblock %}

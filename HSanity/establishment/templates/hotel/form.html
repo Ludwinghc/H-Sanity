@@ -1,12 +1,12 @@
 <form>
 	{% csrf_token %}
-	{% for field in form %}
+	{% for camp in form %}
 	<div>
-		<label for="">{{ field.label }}</label>
-		<input type="{{ field.field.widget.input_type }}" 
-		placeholder="{{ field.label }}" name="{{ field.name }}">
+		<label for="">{{ camp.label }}</label>
+		<input type="{{ camp.field.widget.input_type }}" 
+		placeholder="{{ camp.label }}" name="{{ camp.name }}">
 	</div>
-	<div>{{ fieds.error }}</div>
+	<div>{{ camp.errors }}</div>
 	{% endfor %}
 	<input value="Registrar" type="submit" name="" id="">
 </form>

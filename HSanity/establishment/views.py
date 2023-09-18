@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Establishment
 from .forms import EstablishmentForm
+
 # Create your views here.
 
 def home(request):
@@ -11,7 +13,10 @@ def view(request):
     return render(request, 'hotel/view.html', {'hoteles' : hoteles})
 
 def create(request):
-    form = EstablishmentForm(request.POST or None)
+    form = EstablishmentForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        return redirect('hoteles')
     return render(request, 'hotel/create.html', {'form' : form})
 
 def edit(request):
