@@ -6,11 +6,9 @@ Inicio
 
 {% block body %}
 
-<div class="container-fluid"">
-    <h1>Administar Establecimientos</h1>
-    <a href="{% url 'create' %}"><button type="button" class="btn btn-primary">Registrar</button></a>
-    <h3>Establecimientos Registrados</h3>
-</div>
+<h1>Administar Establecimientos</h1>
+<a href="{% url 'create' %}"><button type="button" class="btn btn-primary">Registrar</button></a>
+<h3>Establecimientos Registrados</h3>
 <div class="table-responsive">
     <table class="table align-middle">
         <thead>
@@ -38,7 +36,8 @@ Inicio
                 <th>{{ hotel.mail }}</th>
                 <th>{{ hotel.website }}</th>
                 <th>
-                    <a href="{% url 'edit' %}"><button type="button" class="btn btn-outline-secondary">Editar</button></a> |
+                    <a href="{% url 'edit' %}"><button type="button"
+                            class="btn btn-outline-secondary">Editar</button></a>
                     <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
                 </th>
             <tr>
