@@ -5,17 +5,18 @@ from .forms import AuditorForm
 
 # Create your views here.
 def inicioAuditor(request):
-    return render(request, 'general/inicio.html')
+    return render(request, 'general/inicioAuditor.html')
 
 def viewAuditor(request):
-    auditores = Auditor.objects.all()
-    return render(request, 'auditor/view.html', {'auditor' : auditores})
+    auditores = Auditor.objects.get(id = 1)
+    print (auditores)
+    return render(request, 'auditor/viewAuditorProfile.html', {'auditor' : auditores})
 
-def create(request):
+def createAuditor(request):
     form_auditor = AuditorForm(request.POST or None)
-    # if form.is_valid():
-    #     form.save()
-    #     return redirect('view')
+    if form_auditor.is_valid():
+      form_auditor.save()
+      return redirect('inicioAuditor')
     return render(request, 'auditor/create.html', {'form_auditor' : form_auditor})
 
 def edit(request, id):
