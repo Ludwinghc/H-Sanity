@@ -9,7 +9,6 @@ def inicioAuditor(request):
 
 def viewAuditor(request):
     auditores = Auditor.objects.get(id = 1)
-    print (auditores)
     return render(request, 'auditor/viewAuditorProfile.html', {'auditor' : auditores})
 
 def createAuditor(request):
