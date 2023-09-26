@@ -1,0 +1,51 @@
+{% extends 'auditorTemplate.html' %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block body %}
+
+<h1>Administar Establecimientos</h1>
+<div style="position:relative; left:850px">
+    <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
+            Establecimiento</button></a>
+</div>
+
+<h3>Establecimientos Registrados</h3>
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Direccón</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Website</th>
+                <th scope="col">Acción</th>
+            <tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for hotel in hoteles %}
+            <tr scope="row">
+                <th>{{ hotel.id }}</th>
+                <th>{{ hotel.name }}</th>
+                <th>
+                    <img src="{{ hotel.photo.url }}" height="80">
+                </th>
+                <th>{{ hotel.address }}</th>
+                <th>{{ hotel.contact }}</th>
+                <th>{{ hotel.mail }}</th>
+                <th>{{ hotel.website }}</th>
+                <th>
+                    <a href="{% url 'editHotel' hotel.id %}"><button type="button"
+                            class="btn btn-outline-secondary">Editar</button></a>
+                    <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
+                </th>
+            <tr>
+                {% endfor %}
+        </tbody>
+</div>
+{% endblock %}

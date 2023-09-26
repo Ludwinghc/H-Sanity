@@ -1,0 +1,21 @@
+<div class="container-sm">
+	<form enctype="multipart/form-data" method="post">
+		{% csrf_token %}
+		{% for camp in form %}
+		<div class="mb-3">
+			<label class="form-label" for="">{{ camp.label }}</label>
+			{% if camp.field.widget.input_type == 'file' and camp.value %}
+			<br>
+			<img src="{{ MEDIA_URL }}/images/{{ camp.value }}" width="100" alt="" srcset="">
+			{% endif %}
+			<input class="form-control form-control-sm" type="{{ camp.field.widget.input_type }}"
+				placeholder="{{ camp.label }}" name="{{ camp.name }}" value="{{ camp.value | default:'' }}">
+		</div>
+		<div>
+			{{ camp.errors }}
+		</div>
+		{% endfor %}
+		<input class="btn btn-primary" type="submit" value="Done" name="" id="">
+	</form>
+	<br>
+</div>
