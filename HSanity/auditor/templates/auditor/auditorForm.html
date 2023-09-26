@@ -4,8 +4,12 @@
 		{% for camp in form_auditor %}
 		<div class="mb-3">
 			<label class="form-label" for="">{{ camp.label }}</label>
-			<input class="form-control form-control-sm" type="{{ camp.field.widget.input_type }}"
-				placeholder="{{ camp.label }}" name="{{ camp.name }}" value="{{ camp.value | default:'' }}"
+			<input 
+			class="form-control form-control-sm" 
+			type="{{ camp.field.widget.input_type }}"
+				placeholder="{{ camp.label }}"
+				name="{{ camp.name }}" 
+				value="{{ camp.value | default:'' }}"
 				required>
 		</div>
 		<div>

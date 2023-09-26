@@ -5,6 +5,9 @@ from .forms import EstablishmentForm
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'general/home.html')
+
 def view(request):
     hoteles = Establishment.objects.all()
     return render(request, 'hotel/viewHotel.html', {'hoteles' : hoteles})
@@ -13,7 +16,7 @@ def create(request):
     form = EstablishmentForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
-        return redirect('hotelView')
+        return redirect('view')
     return render(request, 'hotel/createHotel.html', {'form' : form})
 
 def edit(request, id):
@@ -21,6 +24,6 @@ def edit(request, id):
     form = EstablishmentForm(request.POST or None, request.FILES or None, instance=hotel)
     if form.is_valid() and request.POST:
         form.save()
-        return redirect('hotelView')
+        return redirect('view')
     return render(request, 'hotel/createHotel.html', {'form' : form})
     return render(request, 'hotel/editHotel.html')
