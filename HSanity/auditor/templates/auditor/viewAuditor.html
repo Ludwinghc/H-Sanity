@@ -6,15 +6,14 @@ Home Auditor
 
 {% block body %}
 <div class="card" style="width: 40rem; margin-top: 2rem;">
-  <!-- <img src="" class="card-img-top" alt="..."> -->
   <div class="card-body">
-    <h5 class="card-title">{{auditor.name}} {{auditor.last_name}}</h5>
+    <h3 class="card-title">{{auditor.name}} {{auditor.last_name}}</h3>
     <form class="row g-3">
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email: {{auditor.mail}}</label>
+        <h5 class="form-label">Email: {{auditor.mail}}</h5>
       </div>
       <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Mobile Phone: {{auditor.cell_phone_number}}</label>
+        <h5 class="form-label">Mobile Phone: {{auditor.cell_phone_number}}</h5>
       </div>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -33,8 +32,8 @@ Home Auditor
               {% include 'auditor/auditorForm.html' %}
             </div>
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> -->
-            <div class="modal-footer">
-            </div>
+            <!-- <div class="modal-footer">
+            </div> -->
           </div>
         </div>
       </div>
