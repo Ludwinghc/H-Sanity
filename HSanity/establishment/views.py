@@ -22,5 +22,4 @@ def edit(request, id):
     if form.is_valid() and request.POST:
         form.save()
         return redirect('hotelView')
-    return render(request, 'hotel/createHotel.html', {'form' : form})
-    return render(request, 'hotel/editHotel.html')
+    return render(request, 'hotel/editHotel.html', {'form' : form})

@@ -1,31 +1,23 @@
 {% extends 'auditorTemplate.html' %}
 
 {% block title %}
-    Registro Hotel
+Registro Hotel
 {% endblock %}
 
 {% block body %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-    <section class="d-flex justify-content-center">
-        <div class="card col-sm-8 p-3 m-3">
-            <div class="mb-3 text-center">
-                <h3>Registrar</h3>
-            </div>
-            <div class="mb-2">
-                {% include 'hotel/hotelForm.html' %}
-            </div>
+<section class="d-flex justify-content-center">
+    <div class="card col-sm-8 p-3 m-3">
+        <div class="mb-3 text-center">
+            <h3>Registrar Establecimiento</h3>
         </div>
-    </section>
+        <div class="mb-2">
+            {% include 'hotel/hotelForm.html' %}
+        </div>
+    </div>
+</section>
 
-    {% endblock %}
-    
+{% endblock %}
+
 </body>
+
 </html>
