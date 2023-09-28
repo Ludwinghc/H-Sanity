@@ -55,37 +55,44 @@ Inicio
 
 </head>
 
-<body class="">
+<body>
 
-    <h1>Administar Establecimientos</h1>
+    <div class="m-3 text-center">
+
+        <h1>Administar Establecimientos</h1>
     <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
             Establecimiento</button></a>
-    <div>
+
+    </div>
+
+    
+    <div class="container-sm">
         {% for hotel in hoteles %}
 
-        <div class="card">
-            <header>
-                <img src="{{ hotel.photo.url }}" alt="">
-            </header>
-            <section>
-                <h2>
-                    <th>{{ hotel.name }}
-                </h2>
-                {{ hotel.address }}
-                <br>
-                {{ hotel.contact }}
-                <br>
-                {{ hotel.mail }}
-                <br>
-                {{ hotel.website }}
-            </section>
+        <div class="card-deck">
+            <div class="card-block">
+                <header>
+                    <img src="{{ hotel.photo.url }}" alt="">
+                </header>
+                <section>
+                    <h2>
+                        <th>{{ hotel.name }}
+                    </h2>
+                    {{ hotel.address }}
+                    <br>
+                    {{ hotel.contact }}
+                    <br>
+                    {{ hotel.mail }}
+                    <br>
+                    {{ hotel.website }}
+                </section>
 
-            <footer>
-                <a href="{% url 'editHotel' hotel.id %}"><button type="button"
-                        class="btn btn-outline-secondary">Editar</button></a>
-                <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
-            </footer>
-
+                <footer>
+                    <a href="{% url 'editHotel' hotel.id %}"><button type="button"
+                            class="btn btn-outline-secondary">Editar</button></a>
+                    <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
+                </footer>
+            </div>
         </div>
 
         {% endfor %}
