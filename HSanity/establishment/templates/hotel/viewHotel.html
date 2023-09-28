@@ -6,46 +6,161 @@ Inicio
 
 {% block body %}
 
-<h1>Administar Establecimientos</h1>
-<div style="position:relative; left:850px">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card {
+            text-align: center;
+            margin: 2%;
+            overflow: hidden;
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 7px 13px 37px rgba(0, 0, 0, .6);
+        }
+
+        header {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        header img {
+            width: 100%;
+            height: 50%;
+        }
+
+        section {
+            padding: 10px;
+            text-align: center;
+        }
+
+        section h2 {
+            margin: 5.em 0;
+        }
+
+        section p {
+            margin: 1em 0;
+        }
+
+        footer {
+            padding: 2%;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="m-3 text-center">
+
+        <h1>Administar Establecimientos</h1>
     <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
             Establecimiento</button></a>
-</div>
 
-<h3>Establecimientos Registrados</h3>
-<div class="table-responsive">
-    <table class="table align-middle">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Direccón</th>
-                <th scope="col">Contacto</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Website</th>
-                <th scope="col">Acción</th>
-            <tr>
-        </thead>
-        <tbody class="table-group-divider">
-            {% for hotel in hoteles %}
-            <tr scope="row">
-                <th>{{ hotel.id }}</th>
-                <th>{{ hotel.name }}</th>
-                <th>
-                    <img src="{{ hotel.photo.url }}" height="80">
-                </th>
-                <th>{{ hotel.address }}</th>
-                <th>{{ hotel.contact }}</th>
-                <th>{{ hotel.mail }}</th>
-                <th>{{ hotel.website }}</th>
-                <th>
+    </div>
+
+    
+    <div class="container-sm">
+        {% for hotel in hoteles %}
+
+        <div class="card-deck">
+            <div class="card-block">
+                <header>
+                    <img src="{{ hotel.photo.url }}" alt="">
+                </header>
+                <section>
+                    <h2>
+                        <th>{{ hotel.name }}
+                    </h2>
+                    {{ hotel.address }}
+                    <br>
+                    {{ hotel.contact }}
+                    <br>
+                    {{ hotel.mail }}
+                    <br>
+                    {{ hotel.website }}
+                </section>
+
+                <footer>
                     <a href="{% url 'editHotel' hotel.id %}"><button type="button"
                             class="btn btn-outline-secondary">Editar</button></a>
                     <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
-                </th>
-            <tr>
-                {% endfor %}
-        </tbody>
-</div>
-{% endblock %}
+                </footer>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+    {% endblock %}
+
+
+
+
+
+
+    <!--
+
+
+    <div class="container-fluid">
+        <div class="row border">
+          <div class="col-3 border m-1">
+            Perfil
+          </div>
+          <div class="col-8 m-1 ms-5 border">
+            
+             card
+
+            
+
+<h3>Establecimientos Registrados</h3>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Contacto</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Website</th>
+                            <th scope="col">Acción</th>
+                        <tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        
+                        <tr scope="row">
+                            <th>{{ hotel.id }}</th>
+                            </th>
+                            <th>
+                                
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                
+                            </th>
+                        <tr>
+                            
+                    </tbody>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      -->
+
+
+
+</body>
+
+</html>
