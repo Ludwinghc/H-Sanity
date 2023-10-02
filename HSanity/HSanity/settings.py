@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auditor',
-    'account.apps.AccountConfig',
+    'auditor'
 ]
 
 MIDDLEWARE = [
@@ -138,4 +137,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, "")
 MEDIA_URL = '/images/'
 
-AUTH_USER_MODEL = 'account.User'
