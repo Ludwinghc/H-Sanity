@@ -1,7 +1,7 @@
 from django import forms
-from .models import Establishment
+from .models import Hotel
 
-class EstablishmentForm(forms.ModelForm):
+class HotelForm(forms.ModelForm):
     class Meta:
-        model = Establishment
+        model = Hotel
         fields = '__all__'
