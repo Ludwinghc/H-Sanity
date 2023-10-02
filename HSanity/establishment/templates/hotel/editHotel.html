@@ -1,12 +1,18 @@
-{% extends 'auditorTemplate.html' %}
+{% extends 'account/main.html' %}
 
 {% block title %}
-    Editar Hotel
+Editar Hotel
 {% endblock %}
 
 {% block body %}
-    <div>
-        <h1>Editar Establecimiento</h1>
-        {% include 'hotel/hotelForm.html' %}
+<section class="d-flex justify-content-center">
+    <div class="card col-sm-8 p-3 m-3">
+        <div class="mb-3 text-center">
+            <h3>Editar Establecimiento</h3>
+        </div>
+        <div class="mb-2">
+            {% include 'hotel/hotelForm.html' %}
+        </div>
     </div>
+</section>
 {% endblock %}

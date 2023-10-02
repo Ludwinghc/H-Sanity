@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Establishment(models.Model):
+class Hotel(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name='Nombre',max_length=100, null=True)
     photo = models.ImageField(verbose_name='Foto del Establecimiento', upload_to='images/hotelProfile', null=True)

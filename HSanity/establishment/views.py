@@ -1,26 +1,25 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Establishment
-from .forms import EstablishmentForm
+from .models import Hotel
+from .forms import HotelForm
 
 # Create your views here.
 
 def view(request):
-    hoteles = Establishment.objects.all()
+    hoteles = Hotel.objects.all()
     return render(request, 'hotel/viewHotel.html', {'hoteles' : hoteles})
 
 def create(request):
-    form = EstablishmentForm(request.POST or None, request.FILES or None)
+    form = HotelForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
         return redirect('hotelView')
     return render(request, 'hotel/createHotel.html', {'form' : form})
 
 def edit(request, id):
-    hotel = Establishment.objects.get(id=id)
-    form = EstablishmentForm(request.POST or None, request.FILES or None, instance=hotel)
+    hotel = Hotel.objects.get(id=id)
+    form = HotelForm(request.POST or None, request.FILES or None, instance=hotel)
     if form.is_valid() and request.POST:
         form.save()
         return redirect('hotelView')
-    return render(request, 'hotel/createHotel.html', {'form' : form})
-    return render(request, 'hotel/editHotel.html')
+    return render(request, 'hotel/editHotel.html', {'form' : form})

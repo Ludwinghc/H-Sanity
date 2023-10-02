@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auditor'
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +84,9 @@ DATABASES = {
         'PASSWORD': "",
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
+        },
     }
 }
 
@@ -133,3 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "")
 MEDIA_URL = '/images/'
+

@@ -1,4 +1,4 @@
-{% extends 'auditorTemplate.html' %}
+{% extends 'account/main.html' %}
 
 {% block title %}
 Inicio
@@ -6,46 +6,59 @@ Inicio
 
 {% block body %}
 
-<h1>Administar Establecimientos</h1>
-<div style="position:relative; left:850px">
-    <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
-            Establecimiento</button></a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<h3>Establecimientos Registrados</h3>
-<div class="table-responsive">
-    <table class="table align-middle">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Direccón</th>
-                <th scope="col">Contacto</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Website</th>
-                <th scope="col">Acción</th>
-            <tr>
-        </thead>
-        <tbody class="table-group-divider">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/viewHotel.css">
+</head>
+
+<body>
+
+    <div class="m-3 text-center">
+
+        <h1>Administar Establecimientos</h1>
+        <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
+                Establecimiento</button></a>
+    </div>
+    <div class="container">
+        <div class="row">
             {% for hotel in hoteles %}
-            <tr scope="row">
-                <th>{{ hotel.id }}</th>
-                <th>{{ hotel.name }}</th>
-                <th>
-                    <img src="{{ hotel.photo.url }}" height="80">
-                </th>
-                <th>{{ hotel.address }}</th>
-                <th>{{ hotel.contact }}</th>
-                <th>{{ hotel.mail }}</th>
-                <th>{{ hotel.website }}</th>
-                <th>
-                    <a href="{% url 'editHotel' hotel.id %}"><button type="button"
-                            class="btn btn-outline-secondary">Editar</button></a>
-                    <a href="#"><button type="button" class="btn btn-outline-danger">Deshabilitar</button></a>
-                </th>
-            <tr>
-                {% endfor %}
-        </tbody>
-</div>
-{% endblock %}
+            <div class="col-md-4">
+                <div class="card text-center mb-4 box-shadow">
+                    <div class="card-body">
+                        <header>
+                            <img class="card-img-top" src="{{ hotel.photo.url }}" alt="">
+                        </header>
+                        <section>
+                            <div>
+                                <h2>
+                                    <th>{{ hotel.name }}
+                                </h2>
+                                {{ hotel.address }}
+                                <br>
+                                {{ hotel.contact }}
+                                <br>
+                                {{ hotel.mail }}
+                                <br>
+                                {{ hotel.website }}
+                            </div>
+                        </section>
+                        <footer>
+                            <a href="{% url 'editHotel' hotel.id %}"><button type="button"
+                                    class="btn btn-outline-secondary">Editar</button></a>
+                            <a href="#"><button type="button" class="btn btn-outline-danger">Auditorias</button></a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>
