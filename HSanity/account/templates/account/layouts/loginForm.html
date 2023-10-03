@@ -1,0 +1,35 @@
+<div class="container-sm" style="max-width: 600px; padding: 110px;">
+    <div class="card bg-light">
+        <h3 class="text-center" style="padding: 10px;">Login</h3>
+        <div class="card bg-light">
+            <div class="container">
+                <form>
+                    <div class="mb-3 row">
+                        <label for="username" class="col-7 col-form-label">Usuario</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="username" id="username"
+                                placeholder="Nombre de Usuario">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="password" class="col-7 col-form-label">Contraseña</label>
+                        <div class="col-12">
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="Escribe tu contraseña">
+                        </div>
+                    </div>
+                    <div class="mb-3 row" style="padding: 10px;">
+                        <div class="offset-sm-4 col-sm-8">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mt">
+                <div class="d-flex justify-content-center links">
+                    Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
