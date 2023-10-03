@@ -1,9 +1,22 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Auditor
-from .forms import AuditorForm
+from .forms import AuditorForm, CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
+
+def loginPage(request):
+    return render(request, 'account/general/login.html')
+
+def registerPage(request):
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    return render(request, 'account/general/register.html', {'form': form})
 
 def home(request):
     return render(request, 'account/auditor/dashboard.html')
