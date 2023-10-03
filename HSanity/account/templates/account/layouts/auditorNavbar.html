@@ -1,10 +1,11 @@
+{% load static %}
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'auditorHome' %}">H-Sanity</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -16,6 +17,8 @@
                         <a class="nav-link" href="{% url 'hotelView' %}">Establecimientos</a>
                     </li>
                 </ul>
+                <span style="padding: 12px">Hello, {{ request.user | capfirst }}</span>
+                <span><a href="{% url 'logout' %}">Logout</a></span>
             </div>
         </div>
     </nav>
