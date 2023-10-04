@@ -13,9 +13,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'viewAuditor'  %}">Mi perfil</a>
                     </li>
+                    {% if request.user.is_staff %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'hotelView' %}">Establecimientos</a>
                     </li>
+                    {% endif %}
                 </ul>
                 <span style="padding: 12px">Hello, {{ request.user | capfirst }}</span>
                 <span><a href="{% url 'logout' %}">Logout</a></span>
