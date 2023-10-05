@@ -48,29 +48,3 @@ def registerPage(request):
 def home(request):
     return render(request, "account/dashboard.html")
 
-
-@login_required(login_url="login")
-@allowedUsers(allowedRoles='auditor')
-def createAuditor(request):
-    form_auditor = AuditorForm(request.POST or None)
-    if form_auditor.is_valid():
-        form_auditor.save()
-        return redirect("inicioAuditor")
-    return render(
-        request, "account/createAuditor.html", {"form_auditor": form_auditor}
-    )
-
-
-@login_required(login_url="login")
-@allowedUsers(allowedRoles='auditor')
-def viewAuditor(request):
-    auditores = Auditor.objects.get(id=1)
-    form_auditor = AuditorForm(request.POST or None, instance=auditores)
-    if form_auditor.is_valid() and request.POST:
-        form_auditor.save()
-        return redirect("inicioAuditor")
-    return render(
-        request,
-        "account/viewAuditor.html",
-        {"auditor": auditores, "form_auditor": form_auditor},
-    )
