@@ -23,7 +23,7 @@ def loginPage(request):
             return redirect("auditorHome")
         else:
             messages.info(request, "Username or password is incorrect")
-    return render(request, "account/general/login.html", {})
+    return render(request, "account/login.html", {})
 
 def logOutUser(request):
     logout(request)
@@ -39,7 +39,7 @@ def registerPage(request):
             group = Group.objects.get(name='user')
             user.groups.add(group)
             return redirect("login")
-    return render(request, "account/general/register.html", {"form": form})
+    return render(request, "account/register.html", {"form": form})
 
 
 @login_required(login_url="login")
