@@ -5,5 +5,5 @@ from django.contrib.staticfiles.urls import static
 urlpatterns = [
     path('', views.inicioAuditor, name='inicioAuditor'),
     path('auditor/create', views.createAuditor, name='createAuditor'),
-    path('auditor/view', views.viewAuditor, name='viewAuditor'),
+    path('auditor/view', views.viewAuditor, name='viewAuditor' method='post'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
