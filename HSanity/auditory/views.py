@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def audits(request):
     return render(request, "audits/audits.html")
+
+def createAudit(request):
+    return render(request, "audits/createAudit.html")
