@@ -1,0 +1,22 @@
+{% extends 'account/main.html' %}
+
+{% block title %}
+Create Audit
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include 'audits/layouts/auditNavbar.html' %}
+    <div class="container" style="padding: 50px; padding-top: 130px;">
+        <div data-bs-spy="scroll" data-bs-target="#list" data-bs-smooth-scroll="true" class="scrollspy-example"
+            tabindex="0">
+            {% include 'audits/layouts/sectionOne.html' %}
+            {% include 'audits/layouts/sectionTwo.html' %}
+            {% include 'audits/layouts/sectionThree.html' %}
+            {% include 'audits/layouts/sectionFour.html' %}
+            {% include 'audits/layouts/sectionFive.html' %}
+            {% include 'audits/layouts/sectionSix.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
