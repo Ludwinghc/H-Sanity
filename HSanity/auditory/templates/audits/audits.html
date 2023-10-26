@@ -7,9 +7,10 @@ Audits
 {% block body %}
 <div class="m-3 text-center">
     <h1>Auditorias</h1>
-    <a href="{% url 'createAudit' %}"><button type="button" class="btn btn-primary">
+    <a href="{% url 'createAudit' establishment.id %}"><button type="button" class="btn btn-primary">
             Nueva Auditoria</button></a>
 </div>
+
 <div class="container md">
     <table class="table" style="text-align: center">
         <thead>
@@ -21,13 +22,15 @@ Audits
             </tr>
         </thead>
         <tbody class="table-group-divider">
+            {% for audit in audits %}
             <tr>
-                <th scope="row">1</th>
-                <td>00/00/00</td>
-                <td>100%</td>
+                <th scope="row">{{ audit.id }}</th>
+                <td>{{ audit.created }}</td>
+                <td>{{ audit.score }}</td>
                 <td><a href="#"><button type="button" class="btn btn-secondary">
-                        Ver Detalles</button></a></td>
+                            Ver Detalles</button></a></td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
