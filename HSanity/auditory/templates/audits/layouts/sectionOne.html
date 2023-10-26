@@ -2,6 +2,45 @@
     <div class="shadow p-2 mb-3 bg-primary text-white bg-opacity-65 rounded text-center">
         <h4 id="list-item-1">SECCIÓN 1: A CERCA DEL ESTABLECIMIENTO</h4>
     </div><br>
+
+
+    <div>
+        <h1>Auditoría para {{ establishment }}</h1>
+
+        <h2>Realizar Auditoría</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for section in sections %}
+            <h3>{{ section.name }}</h3>
+            <ul>
+                {% for question in section.question_set.all %}
+                <li>{{ question.text }}</li>
+                <ul>
+                    {% for answer in question.answer_set.all %}
+                    <li>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
+                        {{ answer.text }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+            <input type="submit" value="Realizar Auditoría">
+        </form>
+
+        <h2>Auditorías Anteriores</h2>
+        <ul>
+            {% for audit in audits %}
+            <li>
+                Auditoría ID: {{ audit.id }}
+                Puntaje: {{ audit.auditresult.score }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
     <h4>Clasificación del establecimientos de alojamiento y hospedaje (NTSH 006)</h4>
     <p>Escoja la opción a la que pertenece el establecimiento:</p>
     <select class="form-select" aria-label="Default select example">
