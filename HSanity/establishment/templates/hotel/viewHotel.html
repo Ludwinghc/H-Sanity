@@ -32,13 +32,13 @@ Inicio
                             {{ hotel.mail }}
                             <br>
                             {{ hotel.website }}
-                        </div>
+                        </div><br>
                     </section>
                     <footer>
                         <a href="{% url 'editHotel' hotel.id %}"><button type="button"
                                 class="btn btn-outline-secondary">Editar</button></a>
                         <a href="{% url 'auditView' hotel.id %}"><button type="button"  class="btn btn-outline-danger">
-                            Auditorias</button></a>
+                            Ver Auditorias</button></a>
                     </footer>
                 </div>
             </div>

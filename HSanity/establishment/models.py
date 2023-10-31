@@ -5,7 +5,7 @@ from django.db import models
 class Establishment(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name='Nombre',max_length=100, null=True)
-    photo = models.ImageField(verbose_name='Foto del Establecimiento', upload_to='images/hotelProfile', null=True)
+    photo = models.ImageField(verbose_name='Foto del Establecimiento', upload_to='media\images\hotelProfile', null=True)
     address = models.CharField(verbose_name='Direccion', max_length=50, null=True)
     contact = models.BigIntegerField(verbose_name='Contacto', null=True)
     mail = models.CharField(verbose_name='Correo', max_length=50, null=True)
