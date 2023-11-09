@@ -22,7 +22,7 @@ class Audit(models.Model):
 
 class AuditFile(models.Model):
     audit = models.ForeignKey(Audit, on_delete=models.CASCADE)
-    file = models.FileField(upload_to="media/audits/")
+    file = models.FileField(upload_to="media/files/audits/")
 
     def __str__(self):
         return f"{self.file.name}"

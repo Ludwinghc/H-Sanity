@@ -11,7 +11,6 @@ Create Audit
     <div class="container" style="padding: 50px; padding-top: 80px;">
         <div data-bs-spy="scroll" data-bs-target="#list" data-bs-smooth-scroll="true" class="scrollspy-example"
             tabindex="0">
-
             <h1 class="text-center">Nueva Auditoría para {{ establishment.name }}</h1>
             <form method="POST">
                 {% csrf_token %}
@@ -19,19 +18,21 @@ Create Audit
                 <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
                     <div class="shadow p-2 mb-3 bg-primary text-white bg-opacity-65 rounded text-center">
                         <h4 id="{{ section.name }}">{{ section.name }}</h4>
-                    </div><br>
+                    </div>
                     {% if forloop.counter == 1 %}
                         {% include 'audits/layouts/sectionOne.html' %}
                     {% else %}
                         {% for question in section.question_set.all %}
-                            <p> {{ question.text }}</p>
+                            <p>{{ question.text }}</p>
+                            <div>
                             {% for answer in question.answer_set.all %}
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="question_{{ question.id }}"
-                                    value="{{ answer.id }}">
-                                <label class="form-check-label" for="inlineRadio1">{{ answer.text }}</label>
-                            </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="question_{{ question.id }}"
+                                        value="{{ answer.id }}">
+                                    <label class="form-check-label" for="inlineRadio1">{{ answer.text }}</label>
+                                </div>
                             {% endfor %}
+                            </div><br>
                         {% endfor %}
                     {% endif %}
                 </div>
@@ -39,27 +40,10 @@ Create Audit
                 <div class="container-sm text-center">
                     <button type="submit" class="btn btn-outline-success btn-lg">Submit</button>
                 </div>
-        </div><br>
-        </form>
-    </div>
-</div>
-
-<!-- 
-<div class="container">
-    {% include 'audits/layouts/auditNavbar.html' %}
-    <div class="container" style="padding: 50px; padding-top: 130px;">
-        <div data-bs-spy="scroll" data-bs-target="#list" data-bs-smooth-scroll="true" class="scrollspy-example"
-            tabindex="0">
-            {% include 'audits/layouts/sectionOne.html' %}
-            {% include 'audits/layouts/sectionTwo.html' %}
-            {% include 'audits/layouts/sectionThree.html' %}
-            {% include 'audits/layouts/sectionFour.html' %}
-            {% include 'audits/layouts/sectionFive.html' %}
-            {% include 'audits/layouts/sectionSix.html' %}
+            </form>
         </div>
     </div>
 </div>
- -->
 
 {% endblock %}
 
