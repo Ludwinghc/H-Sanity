@@ -1,12 +1,12 @@
 <div class="container-sm" style="max-width: 600px; padding: 110px;">
-    <div class="card bg-light">
-        <h3 class="text-center" style="padding: 10px;">Login</h3>
-        <div class="card bg-light">
+    <div class="card bg-light bg-gradient border-dark">
+        <h2 class="text-center" style="padding: 10px;">Auditor's Login</h2>
+
             <div class="container">
                 <form method="POST">
                     {% csrf_token %}
                     <div class="mb-3 row">
-                        <label for="username" class="col-7 col-form-label">Usuario</label>
+                        <label for="username" class="col-7 col-form-label text-primary"><h5>Usuario</h5></label>
                         <div class="col-12">
                             <input type="text" class="form-control" name="username" id="username"
                                 placeholder="Nombre de Usuario">
@@ -34,7 +34,7 @@
                     Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
                 </div>
             </div>
-        </div>
+        
     </div>
 
 </div>
