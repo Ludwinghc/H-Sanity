@@ -6,14 +6,14 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="mb-3 row">
-                        <label for="username" class="col-7 col-form-label text-primary"><h5>Usuario</h5></label>
+                        <label for="username" class="col-7 col-form-label"><h5>User:</h5></label>
                         <div class="col-12">
                             <input type="text" class="form-control" name="username" id="username"
                                 placeholder="Nombre de Usuario">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="password" class="col-7 col-form-label">Contraseña</label>
+                        <label for="password" class="col-7 col-form-label"><h5>Password:</h5></label>
                         <div class="col-12">
                             <input type="password" class="form-control" name="password" id="password"
                                 placeholder="Escribe tu contraseña">
