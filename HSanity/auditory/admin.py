@@ -15,4 +15,6 @@ admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer)
 admin.site.register(AuditResult)
 admin.site.register(SectionResult)
+admin.site.register(AuditFile)
+
 

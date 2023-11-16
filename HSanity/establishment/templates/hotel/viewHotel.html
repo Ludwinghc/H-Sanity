@@ -7,10 +7,10 @@ Inicio
 {% block body %}
 
 <div class="m-3 text-center">
-    <h1>Administar Establecimientos</h1>
+    <h1>Administar Establecimientos</h1><br>
     <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
             Establecimiento</button></a>
-</div>
+</div><br>
 <div class="container">
     <div class="row">
         {% for hotel in hoteles %}
@@ -19,11 +19,11 @@ Inicio
                 <div class="card-body">
                     <header>
                         <img class="card-img-top" src="{{ hotel.photo.url }}" alt="">
-                    </header>
+                    </header><br>
                     <section>
                         <div>
                             <h2>
-                                <th>{{ hotel.name }}
+                                <th>{{ hotel.name }}</th>
                             </h2>
                             {{ hotel.address }}
                             <br>
@@ -32,13 +32,13 @@ Inicio
                             {{ hotel.mail }}
                             <br>
                             {{ hotel.website }}
-                        </div>
+                        </div><br>
                     </section>
                     <footer>
                         <a href="{% url 'editHotel' hotel.id %}"><button type="button"
                                 class="btn btn-outline-secondary">Editar</button></a>
-                        <a href="{% url 'auditView' hotel.id %}"><button type="button"  class="btn btn-outline-danger">
-                            Auditorias</button></a>
+                        <a href="{% url 'auditView' hotel.id %}"><button type="button" class="btn btn-outline-primary">
+                                Ver Auditorias</button></a>
                     </footer>
                 </div>
             </div>

@@ -6,7 +6,7 @@ Audits
 
 {% block body %}
 <div class="m-3 text-center">
-    <h1>Auditorias</h1>
+    <h1>Auditorias de {{ establishment.name }}</h1>
     <a href="{% url 'createAudit' establishment.id %}"><button type="button" class="btn btn-primary">
             Nueva Auditoria</button></a>
 </div>
@@ -26,7 +26,7 @@ Audits
             <tr>
                 <th scope="row">{{ audit.id }}</th>
                 <td>{{ audit.created }}</td>
-                <td>{{ audit.score }}</td>
+                <td>{{ audit.score }} %</td>
                 <td><a href="#"><button type="button" class="btn btn-secondary">
                             Ver Detalles</button></a></td>
             </tr>

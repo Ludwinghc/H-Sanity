@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from establishment.models import Establishment
+from auditory.models import Audit
 from .forms import CreateUserForm
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -45,5 +45,15 @@ def registerPage(request):
 @login_required(login_url="login")
 @allowedUsers(allowedRoles='auditor, user')
 def home(request):
-    return render(request, "account/dashboard.html")
+    establishments = Establishment.objects.filter(audit__isnull=False).distinct()
+    establishmentAudit = []
 
+    for establishment in establishments:
+        latestAudit = establishment.audit_set.last() 
+        establishmentAudit.append((establishment, latestAudit))
+
+    context = {
+        "establishmentAudit": establishmentAudit,
+    }
+
+    return render(request, "account/dashboard.html", context)

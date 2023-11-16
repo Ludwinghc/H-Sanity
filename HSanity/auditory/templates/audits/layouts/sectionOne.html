@@ -1,114 +1,73 @@
-<div class="shadow p-3 mb-5 bg-body-tertiary rounded">
-    <div class="shadow p-2 mb-3 bg-primary text-white bg-opacity-65 rounded text-center">
-        <h4 id="list-item-1">SECCIÓN 1: A CERCA DEL ESTABLECIMIENTO</h4>
-    </div><br>
-
-
-    <div>
-        <h1>Auditoría para {{ establishment }}</h1>
-
-        <h2>Realizar Auditoría</h2>
-        <form method="post">
-            {% csrf_token %}
-            {% for section in sections %}
-            <h3>{{ section.name }}</h3>
-            <ul>
-                {% for question in section.question_set.all %}
-                <li>{{ question.text }}</li>
-                <ul>
-                    {% for answer in question.answer_set.all %}
-                    <li>
-                        <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
-                        {{ answer.text }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% endfor %}
-            </ul>
-            {% endfor %}
-            <input type="submit" value="Realizar Auditoría">
-        </form>
-
-        <h2>Auditorías Anteriores</h2>
-        <ul>
-            {% for audit in audits %}
-            <li>
-                Auditoría ID: {{ audit.id }}
-                Puntaje: {{ audit.auditresult.score }}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-
-    <h4>Clasificación del establecimientos de alojamiento y hospedaje (NTSH 006)</h4>
-    <p>Escoja la opción a la que pertenece el establecimiento:</p>
-    <select class="form-select" aria-label="Default select example">
-        <option selected>-</option>
-        <option value="1">Albergue-refugio-hostal </option>
-        <option value="2">Apartahotel </option>
-        <option value="3">Vivienda Turística </option>
-        <option value="4">Alojamiento rural </option>
-        <option value="5">Hotel </option>
-        <option value="6">Posadas turísticas </option>
-        <option value="7">Recintos de campamento o camping</option>
-    </select><br>
-    <h4>Requisitos de Operación - Documentación</h4><br>
-    <h5>Previo al inicio de sus Operaciones:</h5>
-    <p>Los siguientes archivos deben ser adjuntos</p><br>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Comprobante de inscripción en el RNT. </label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Comprobante de inscripción al RUT</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Registro Mercantil</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Matrícula mercantil de la Cámara de Comercio de su
-            municipio o distrito. </label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">La comunicación de la apertura del establecimiento a la
-            estación de la Policía Nacional</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Permiso de uso de suelo.</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div><br>
-    <h5>Durante el desarrollo de actividad económica:</h5>
-    <p>Los siguientes archivos deben ser adjuntos</p><br>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Tarjeta de Registro de Alojamiento.</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Contrato de Hospedaje</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Concepto técnico emitido por el cuerpo oficial de
-            bomberos municipal o distrital</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Concepto sanitario emitido por la secretaria de salud
-            municipal o distrital</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Permiso de publicidad exterior visual emitido por el
-            municipio o distrito</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
-    <div class="mb-3">
-        <label for="formFileSm" class="form-label">Pagos de derechos de autor en Sayco y Acinpro</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
-    </div>
+<h4>Clasificación del establecimientos de alojamiento y hospedaje (NTSH 006)</h4>
+<p>Escoja la opción a la que pertenece el establecimiento:</p>
+<select class="form-select" aria-label="Default select example">
+    <option selected>-</option>
+    <option value="1">Albergue-refugio-hostal </option>
+    <option value="2">Apartahotel </option>
+    <option value="3">Vivienda Turística </option>
+    <option value="4">Alojamiento rural </option>
+    <option value="5">Hotel </option>
+    <option value="6">Posadas turísticas </option>
+    <option value="7">Recintos de campamento o camping</option>
+</select><br>
+<h4>Requisitos de Operación - Documentación</h4><br>
+<h5>Previo al inicio de sus Operaciones:</h5>
+<p>Los siguientes archivos deben ser adjuntos</p><br>
+<div class="mb-3">
+    <label for="RNT" class="form-label">Comprobante de inscripción en el RNT. </label>
+    <input class="form-control form-control-sm" id="RNT" name="RNT" type="file">
+</div>
+<div class="mb-3">
+    <label for="RUT" class="form-label">Comprobante de inscripción al RUT</label>
+    <input class="form-control form-control-sm" id="RUT" name="RUT" type="file">
+</div>
+<div class="mb-3">
+    <label for="Registro Mercantil" class="form-label">Registro Mercantil</label>
+    <input class="form-control form-control-sm" id="Registro Mercantil" name="Registro Mercantil" type="file">
+</div>
+<div class="mb-3">
+    <label for="Matricula Mercantil" class="form-label">Matrícula mercantil de la Cámara de Comercio de su
+        municipio o distrito. </label>
+    <input class="form-control form-control-sm" id="Matricula Mercantil" name="Matricula Mercantil" type="file">
+</div>
+<div class="mb-3">
+    <label for="Comunicación Policia Nacional" class="form-label">La comunicación de la apertura del establecimiento a
+        la estación de la Policía Nacional</label>
+    <input class="form-control form-control-sm" id="Comunicación Policia Nacional" name="Comunicación Policia Nacional"
+        type="file">
+</div>
+<div class="mb-3">
+    <label for="Uso de Suelos" class="form-label">Permiso de uso de suelo.</label>
+    <input class="form-control form-control-sm" id="Uso de Suelos" name="Uso de Suelos" type="file">
+</div><br>
+<h5>Durante el desarrollo de actividad económica:</h5>
+<p>Los siguientes archivos deben ser adjuntos</p><br>
+<div class="mb-3">
+    <label for="Targeta Registro Alojamiento" class="form-label">Tarjeta de Registro de Alojamiento.</label>
+    <input class="form-control form-control-sm" id="Targeta Registro Alojamiento" name="Targeta Registro Alojamiento"
+        type="file">
+</div>
+<div class="mb-3">
+    <label for="Contrato Hospedaje" class="form-label">Contrato de Hospedaje</label>
+    <input class="form-control form-control-sm" id="Contrato Hospedaje" name="Contrato Hospedaje" type="file">
+</div>
+<div class="mb-3">
+    <label for="Concepto Tecnico Bomberos" class="form-label">Concepto técnico emitido por el cuerpo oficial de
+        bomberos municipal o distrital</label>
+    <input class="form-control form-control-sm" id="Concepto Tecnico Bomberos" name="Concepto Tecnico Bomberos"
+        type="file">
+</div>
+<div class="mb-3">
+    <label for="Concepto Sanitario" class="form-label">Concepto sanitario emitido por la secretaria de salud
+        municipal o distrital</label>
+    <input class="form-control form-control-sm" id="Concepto Sanitario" name="Concepto Sanitario" type="file">
+</div>
+<div class="mb-3">
+    <label for="Permiso Publicidad" class="form-label">Permiso de publicidad exterior visual emitido por el
+        municipio o distrito</label>
+    <input class="form-control form-control-sm" id="Permiso Publicidad" name="Permiso Publicidad" type="file">
+</div>
+<div class="mb-3">
+    <label for="Sayco y Acinpro" class="form-label">Pagos de derechos de autor en Sayco y Acinpro</label>
+    <input class="form-control form-control-sm" id="Sayco y Acinpro" name="Sayco y Acinpro" type="file">
 </div>

@@ -1,20 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
-from .models import (
-    Audit,
-    Section,
-    Question,
-    Establishment,
-    Answer,
-    AuditResult,
-    SectionResult,
-)
-from django.db.models import Avg
+from .models import Audit, Section, Question, Establishment, Answer, AuditFile
+from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+from account.decorators import unauthenticatedUser, allowedUsers
 
+import os
 
-# Create your views here.
-
-
+@login_required(login_url="login")
+@allowedUsers(allowedRoles='auditor')
 def audits(request, id):
     establishment = get_object_or_404(Establishment, id=id)
     audits = Audit.objects.filter(establishment=establishment)
@@ -27,57 +20,88 @@ def audits(request, id):
     return render(request, "audits/audits.html", context)
 
 
-def createAudit(request, id):
+def calculateSectionScore(section, answers):
+    sectionScore = 0
+    maxSectionScore = 0
 
+    for question in Question.objects.filter(section=section):
+        maxSectionScore += 1
+        answerId = answers.get(f"question_{question.id}", None)
+
+        if answerId:
+            answer = Answer.objects.get(pk=answerId)
+            if answer.correct:
+                sectionScore += 1
+
+    if maxSectionScore == 0:
+        return 0
+    return (sectionScore / maxSectionScore) * 100
+
+
+def calculateAuditScore(answers):
+    totalScore = 0
+    numSections = 0
+
+    for section in Section.objects.all():
+        sectionScore = calculateSectionScore(section, answers)
+        totalScore += sectionScore
+        numSections += 1
+
+    if numSections == 0:
+        return 0
+
+    return totalScore / (numSections - 1)
+
+
+@login_required(login_url="login")
+@allowedUsers(allowedRoles='auditor')
+def createAudit(request, id):
     establishment = get_object_or_404(Establishment, id=id)
     sections = Section.objects.all()
     questions = Question.objects.all()
 
-    if request.method == 'POST':
-        # Crear una nueva auditoría
-        audit = Audit.objects.create(scoreToPass=80)  # Create the Audit instance without the establishment
-        audit.establishment.add(establishment) # Add the establishment relationship separately
-        # Recopila los datos del formulario y calcula el puntaje    
-        total_score = 0
-        for section in Section.objects.all():
-            section_score = 0
-            for question in Question.objects.filter(section=section):
-                answer_id = request.POST.get(f'question_{question.id}', None)
-                if answer_id:
-                    answer = Answer.objects.get(pk=answer_id)
-                    if answer.correct:
-                        section_score += 1  # Incrementa el puntaje en 1 por cada respuesta correcta
+    if request.method == "POST":
+        answers = request.POST
+        audit = createNewAudit(establishment, answers)
+        uploaded_files = request.FILES
+        uploadFiles(uploaded_files, audit)
 
-            total_score += section_score
-
-        # Calcula el puntaje promedio de la auditoría
-        num_sections = Section.objects.count()
-        audit_score = total_score / num_sections
-
-        # Guarda el puntaje total en el campo score de la auditoría
-        audit.score = audit_score
-        audit.save()
-
-        return redirect('auditView', id=establishment.id)
+        return redirect("auditView", id=establishment.id)
 
     context = {
-        'establishment': establishment, 
-        'sections': sections,
-        'questions': questions
-        }
-    
+        "establishment": establishment,
+        "sections": sections,
+        "questions": questions,
+    }
+
     return render(request, "audits/createAudit.html", context)
 
 
-# def auditDetail(request, id):
-#     audit = Audit.objects.get(id=id)
-#     section_results = SectionResult.objects.filter(section__audit=audit)
-#     audit_result = AuditResult.objects.get(audit=audit)
+def createNewAudit(establishment, answers):
+    auditScore = calculateAuditScore(answers)
+    audit = Audit.objects.create(scoreToPass=80)
+    audit.establishment.add(establishment)
+    audit.score = auditScore
+    audit.save()
+    return audit
 
-#     context = {
-#         "audit": audit,
-#         "section_results": section_results,
-#         "audit_result": audit_result,
-#     }
 
-#     return render(request, "audit_detail.html", context)
+def uploadFiles(audit):
+    
+    AUDIT_FILES = [
+        "RNT",
+        "RUT",
+        "Registro Mercantil",
+        "Matricula Mercantil",
+        "Comunicación Policia Nacional",
+        "Uso de Suelos",
+        "Targeta Registro Alojamiento",
+        "Contrato Hospedaje",
+        "Concepto Tecnico Bomberos",
+        "Concepto Sanitario",
+        "Permiso Publicidad",
+        "Sayco y Acinpro",
+    ]
+
+    auditDirectory = f"media/files/audits/{audit.id}"
+    os.makedirs(auditDirectory, exist_ok=True)

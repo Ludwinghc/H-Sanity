@@ -2,7 +2,9 @@ from django.db import models
 from establishment.models import Establishment
 from django.contrib.auth.models import User
 
+
 # Create your models here.
+
 
 class Audit(models.Model):
     id = models.AutoField(primary_key=True)
@@ -16,6 +18,14 @@ class Audit(models.Model):
 
     def get_questions(self):
         return self.question_set.all
+
+
+class AuditFile(models.Model):
+    audit = models.ForeignKey(Audit, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="media/files/audits/")
+
+    def __str__(self):
+        return f"{self.file.name}"
 
 
 class Section(models.Model):

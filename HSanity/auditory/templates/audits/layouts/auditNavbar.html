@@ -1,11 +1,17 @@
-<div class="position-fixed text-center" style="width: 1115px; padding-top: 25px;">
-    <div id="list" class="list-group list-group-horizontal-sm">
-        <a class="list-group-item list-group-item-action" href="#list-item-1">ESTABLECIMIENTO</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-2">OBLIGACIONES - NORMAS TÉCNICAS
-            SECTORIALES</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-3">PROTECCIÓN AL CONSUMIDOR</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-4">REGIMEN SANCIONATORIO</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-5">TURISMO RESPONSABLE</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-6">BIOSEGURIDAD</a>
+<div class="position-fixed" style="width: 1115px; padding-top: 25px;">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle opacity-75" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Sección Auditoria
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark text-center">
+            {% for section in sections %}
+            <li><a class="dropdown-item" href="#{{ section.name }}">{{ section.name }}</a></li>
+            {% endfor %}
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item link-danger" href="#">Exit</a></li>
+        </ul>
     </div>
 </div>
