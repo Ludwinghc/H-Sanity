@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Audit, Section, Question, Establishment, Answer, AuditFile
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+from account.decorators import unauthenticatedUser, allowedUsers
+
 import os
 
-
+@login_required(login_url="login")
+@allowedUsers(allowedRoles='auditor')
 def audits(request, id):
     establishment = get_object_or_404(Establishment, id=id)
     audits = Audit.objects.filter(establishment=establishment)
@@ -45,10 +49,12 @@ def calculateAuditScore(answers):
 
     if numSections == 0:
         return 0
-    
-    return totalScore / (numSections-1)
+
+    return totalScore / (numSections - 1)
 
 
+@login_required(login_url="login")
+@allowedUsers(allowedRoles='auditor')
 def createAudit(request, id):
     establishment = get_object_or_404(Establishment, id=id)
     sections = Section.objects.all()
@@ -57,7 +63,8 @@ def createAudit(request, id):
     if request.method == "POST":
         answers = request.POST
         audit = createNewAudit(establishment, answers)
-        uploadFiles(request.FILES, audit)
+        uploaded_files = request.FILES
+        uploadFiles(uploaded_files, audit)
 
         return redirect("auditView", id=establishment.id)
 
@@ -79,8 +86,8 @@ def createNewAudit(establishment, answers):
     return audit
 
 
-def uploadFiles(files, audit):
-
+def uploadFiles(audit):
+    
     AUDIT_FILES = [
         "RNT",
         "RUT",
@@ -97,13 +104,4 @@ def uploadFiles(files, audit):
     ]
 
     auditDirectory = f"media/files/audits/{audit.id}"
-    os.makedirs(auditDirectory)
-
-    for fileField in AUDIT_FILES:
-        if fileField in files:
-            uploadedFile = files[fileField]
-            if uploadedFile:
-                fs = FileSystemStorage(location=auditDirectory)
-                fileName = fs.save(uploadedFile.name, uploadedFile)
-                auditFile = AuditFile(audit=audit, file=fileName)
-                auditFile.save()
+    os.makedirs(auditDirectory, exist_ok=True)
