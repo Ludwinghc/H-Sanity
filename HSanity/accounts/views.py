@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from establishment.models import Establishment
-from auditory.models import SectionResult, Section
+from auditory.models import SectionResult
 from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -10,6 +10,7 @@ from .decorators import unauthenticatedUser, allowedUsers
 
 
 # Create your views here.
+
 
 @unauthenticatedUser
 def loginPage(request):
@@ -26,9 +27,11 @@ def loginPage(request):
             messages.info(request, "Username or password is incorrect")
     return render(request, "account/login.html", {})
 
+
 def logOutUser(request):
     logout(request)
     return redirect("login")
+
 
 @unauthenticatedUser
 def registerPage(request):
@@ -36,15 +39,15 @@ def registerPage(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            user =form.save()
-            group = Group.objects.get(name='user')
+            user = form.save()
+            group = Group.objects.get(name="user")
             user.groups.add(group)
             return redirect("login")
     return render(request, "account/register.html", {"form": form})
 
 
 @login_required(login_url="login")
-@allowedUsers(allowedRoles='auditor, user')
+@allowedUsers(allowedRoles="auditor, user")
 def home(request):
     establishments = Establishment.objects.all()
     establishmentAudit = []
@@ -60,6 +63,7 @@ def home(request):
     }
 
     return render(request, "account/dashboard.html", context)
+
 
 def getSectionResultsForEstablishment(establishment):
     latestAudit = establishment.audit_set.last()

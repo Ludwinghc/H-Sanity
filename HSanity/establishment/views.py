@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import Establishment
 from .forms import HotelForm
 from django.contrib.auth.decorators import login_required
-from account.decorators import allowedUsers
+from accounts.decorators import allowedUsers
 
 # Create your views here.
 
