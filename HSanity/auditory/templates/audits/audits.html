@@ -5,6 +5,7 @@ Audits
 {% endblock %}
 
 {% block body %}
+
 <div class="m-3 text-center">
     <h1>Auditorias de {{ establishment.name }}</h1>
     <a href="{% url 'createAudit' establishment.id %}"><button type="button" class="btn btn-primary">
@@ -34,4 +35,5 @@ Audits
         </tbody>
     </table>
 </div>
+
 {% endblock %}
