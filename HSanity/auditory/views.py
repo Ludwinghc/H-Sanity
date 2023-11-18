@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Audit, Section, Question, Establishment, Answer, SectionResult
-from django.core.files.storage import FileSystemStorage
 from .forms import FileUploadForm
 from django.contrib.auth.decorators import login_required
-from account.decorators import unauthenticatedUser, allowedUsers
+from accounts.decorators import unauthenticatedUser, allowedUsers
 
 import os
 
