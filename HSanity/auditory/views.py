@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Audit, Section, Question, Establishment, Answer, AuditFile
+from .models import Audit, Section, Question, Establishment, Answer, SectionResult
 from django.core.files.storage import FileSystemStorage
+from .forms import FileUploadForm
 from django.contrib.auth.decorators import login_required
 from account.decorators import unauthenticatedUser, allowedUsers
 
 import os
 
+
 @login_required(login_url="login")
-@allowedUsers(allowedRoles='auditor')
+@allowedUsers(allowedRoles="auditor")
 def audits(request, id):
     establishment = get_object_or_404(Establishment, id=id)
     audits = Audit.objects.filter(establishment=establishment)
@@ -38,6 +40,12 @@ def calculateSectionScore(section, answers):
     return (sectionScore / maxSectionScore) * 100
 
 
+def saveSectionResults(audit, answers):
+    for section in Section.objects.all()[1:]:
+        sectionScore = calculateSectionScore(section, answers)
+        SectionResult.objects.create(audit=audit, section=section, score=sectionScore)
+
+
 def calculateAuditScore(answers):
     totalScore = 0
     numSections = 0
@@ -54,24 +62,25 @@ def calculateAuditScore(answers):
 
 
 @login_required(login_url="login")
-@allowedUsers(allowedRoles='auditor')
+@allowedUsers(allowedRoles="auditor")
 def createAudit(request, id):
     establishment = get_object_or_404(Establishment, id=id)
     sections = Section.objects.all()
     questions = Question.objects.all()
+    files = FileUploadForm(request.POST or None, request.FILES or None)
 
-    if request.method == "POST":
+    if request.method == "POST" and files.is_valid():
         answers = request.POST
         audit = createNewAudit(establishment, answers)
-        uploaded_files = request.FILES
-        uploadFiles(uploaded_files, audit)
-
+        uploadFiles(request.FILES, audit)
+        
         return redirect("auditView", id=establishment.id)
 
     context = {
         "establishment": establishment,
         "sections": sections,
         "questions": questions,
+        "files": files,
     }
 
     return render(request, "audits/createAudit.html", context)
@@ -83,25 +92,18 @@ def createNewAudit(establishment, answers):
     audit.establishment.add(establishment)
     audit.score = auditScore
     audit.save()
+    saveSectionResults(audit, answers)
+
     return audit
 
 
-def uploadFiles(audit):
-    
-    AUDIT_FILES = [
-        "RNT",
-        "RUT",
-        "Registro Mercantil",
-        "Matricula Mercantil",
-        "Comunicación Policia Nacional",
-        "Uso de Suelos",
-        "Targeta Registro Alojamiento",
-        "Contrato Hospedaje",
-        "Concepto Tecnico Bomberos",
-        "Concepto Sanitario",
-        "Permiso Publicidad",
-        "Sayco y Acinpro",
-    ]
-
+def uploadFiles(uploadedFiles, audit):
     auditDirectory = f"media/files/audits/{audit.id}"
     os.makedirs(auditDirectory, exist_ok=True)
+
+    for file_field in uploadedFiles:
+        file = uploadedFiles[file_field]
+        file_path = os.path.join(auditDirectory, file.name)
+        with open(file_path, "wb+") as destination:
+            for chunk in file.chunks():
+                destination.write(chunk)

@@ -12,7 +12,7 @@ Create Audit
         <div data-bs-spy="scroll" data-bs-target="#list" data-bs-smooth-scroll="true" class="scrollspy-example"
             tabindex="0">
             <h1 class="text-center">Nueva Auditoría para {{ establishment.name }}</h1>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for section in sections %}
                 <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
@@ -20,7 +20,14 @@ Create Audit
                         <h4 id="{{ section.name }}">{{ section.name }}</h4>
                     </div>
                     {% if forloop.counter == 1 %}
-                        {% include 'audits/layouts/sectionOne.html' %}
+                        <h4>Requisitos de Operación - Documentación</h4><br>
+                        <p>Los siguientes archivos deben ser adjuntos</p><br>
+                        {% for field in files %}
+                            <div class="mb-3">
+                                <label for="id_{{ field.name }}" class="form-label">{{ field.label }}</label>
+                                <input class="form-control form-control-sm" id="id_{{ field.name }}" name="{{ field.name }}" type="file">
+                            </div>
+                        {% endfor %}
                     {% else %}
                         {% for question in section.question_set.all %}
                             <p>{{ question.text }}</p>
