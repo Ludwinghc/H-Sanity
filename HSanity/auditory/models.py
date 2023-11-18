@@ -1,6 +1,5 @@
 from django.db import models
 from establishment.models import Establishment
-from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -10,7 +9,7 @@ class Audit(models.Model):
     id = models.AutoField(primary_key=True)
     establishment = models.ManyToManyField(Establishment)
     created = models.DateTimeField(auto_now_add=True)
-    scoreToPass = models.IntegerField(help_text="Final audit rating")
+    scoreToPass = models.IntegerField()
     score = models.FloatField(default=0)
 
     def __str__(self):
@@ -18,14 +17,6 @@ class Audit(models.Model):
 
     def get_questions(self):
         return self.question_set.all
-
-
-class AuditFile(models.Model):
-    audit = models.ForeignKey(Audit, on_delete=models.CASCADE)
-    file = models.FileField(upload_to="media/files/audits/")
-
-    def __str__(self):
-        return f"{self.file.name}"
 
 
 class Section(models.Model):
@@ -59,18 +50,10 @@ class Answer(models.Model):
         return f"Question: {self.question.text}, Answer: {self.text}, Correct: {self.correct}"
 
 
-class AuditResult(models.Model):
-    audit = models.ForeignKey(Audit, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.FloatField()
-
-    def __str__(self):
-        return f"{self.pk}"
-
-
 class SectionResult(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     score = models.FloatField()
+    audit = models.ForeignKey(Audit, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.pk}"
+        return f"#{self.audit.id} - {self.section} Score: {self.score}"
