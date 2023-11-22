@@ -1,0 +1,39 @@
+{% extends 'account/main.html' %}
+
+{% block title %}
+Audits
+{% endblock %}
+
+{% block body %}
+
+<div class="m-3 text-center">
+    <h1>Auditorias de {{ establishment.name }}</h1>
+    <a href="{% url 'createAudit' establishment.id %}"><button type="button" class="btn btn-primary">
+            Nueva Auditoria</button></a>
+</div>
+
+<div class="container md">
+    <table class="table" style="text-align: center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Puntaje</th>
+                <th scope="col">Detalles</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for audit in audits %}
+            <tr>
+                <th scope="row">{{ audit.id }}</th>
+                <td>{{ audit.created }}</td>
+                <td>{{ audit.score | floatformat:1  }} %</td>
+                <td><a href="#"><button type="button" class="btn btn-secondary">
+                            Ver Detalles</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

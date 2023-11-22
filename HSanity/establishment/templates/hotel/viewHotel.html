@@ -6,59 +6,46 @@ Inicio
 
 {% block body %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/viewHotel.css">
-</head>
-
-<body>
-
-    <div class="m-3 text-center">
-
-        <h1>Administar Establecimientos</h1>
-        <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
-                Establecimiento</button></a>
-    </div>
-    <div class="container">
-        <div class="row">
-            {% for hotel in hoteles %}
-            <div class="col-md-4">
-                <div class="card text-center mb-4 box-shadow">
-                    <div class="card-body">
-                        <header>
-                            <img class="card-img-top" src="{{ hotel.photo.url }}" alt="">
-                        </header>
-                        <section>
-                            <div>
-                                <h2>
-                                    <th>{{ hotel.name }}
-                                </h2>
-                                {{ hotel.address }}
-                                <br>
-                                {{ hotel.contact }}
-                                <br>
-                                {{ hotel.mail }}
-                                <br>
-                                {{ hotel.website }}
-                            </div>
-                        </section>
-                        <footer>
-                            <a href="{% url 'editHotel' hotel.id %}"><button type="button"
-                                    class="btn btn-outline-secondary">Editar</button></a>
-                            <a href="#"><button type="button" class="btn btn-outline-danger">Auditorias</button></a>
-                        </footer>
-                    </div>
+<div class="m-3 text-center">
+    <h1>Administar Establecimientos</h1><br>
+    <a href="{% url 'createHotel' %}"><button type="button" class="btn btn-primary">Registrar Nuevo
+            Establecimiento</button></a>
+</div><br>
+<div class="container">
+    <div class="row">
+        {% for hotel in hoteles %}
+        <div class="col-md-4">
+            <div class="card text-center mb-4 box-shadow">
+                <div class="card-body">
+                    <header>
+                        <img class="card-img-top" src="{{ hotel.photo.url }}" alt="">
+                    </header><br>
+                    <section>
+                        <div>
+                            <h2>
+                                <th>{{ hotel.name }}</th>
+                            </h2>
+                            {{ hotel.address }}
+                            <br>
+                            {{ hotel.contact }}
+                            <br>
+                            {{ hotel.mail }}
+                            <br>
+                            {{ hotel.website }}
+                        </div><br>
+                    </section>
+                    <footer>
+                        <a href="{% url 'editHotel' hotel.id %}"><button type="button"
+                                class="btn btn-outline-secondary">Editar</button></a>
+                        <a href="{% url 'auditView' hotel.id %}"><button type="button" class="btn btn-outline-primary">
+                                Ver Auditorias</button></a>
+                    </footer>
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
-    {% endblock %}
-
-</body>
+</div>
+{% endblock %}
 
 </html>

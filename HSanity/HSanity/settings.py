@@ -33,13 +33,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'establishment',
+    'accounts',
+    'auditory',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account',
 ]
 
 MIDDLEWARE = [
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'HSanity.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hsanity',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': "",
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'PASSWORD': "CA-B-ehfHB-A3B5Dg-C4f5H-Gbdfb1f2",
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '34269',
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
         },
@@ -135,5 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # own code
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "")
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'
 
