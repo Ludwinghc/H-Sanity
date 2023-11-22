@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'HSanity.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
+        'NAME': 'hsanity2',
         'USER': 'root',
-        'PASSWORD': "CA-B-ehfHB-A3B5Dg-C4f5H-Gbdfb1f2",
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '34269',
+        'PASSWORD': "",
+        'HOST': 'localhost',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
         },
