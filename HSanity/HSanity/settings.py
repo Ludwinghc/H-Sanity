@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'HSanity.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hsanity2',
+        'NAME': 'hsanity',
         'USER': 'root',
         'PASSWORD': "",
         'HOST': 'localhost',
