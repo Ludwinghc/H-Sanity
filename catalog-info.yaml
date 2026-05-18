@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: h-sanity
+  title: H-Sanity Universidad
+  description: Sistema de informacion para gestion de auditorias de sanidad
+  annotations:
+    github.com/project-slug: Ludwinghc/H-Sanity
+
+    backstage.io/techdocs-ref: dir:.
+
+    backstage.io/source-location: url:https://github.com/Ludwinghc/H-Sanity/tree/master/
+  tags:
+
+
+    - backstage
+
+    - python
+
+
+spec:
+  type: website
+  lifecycle: production
+  owner: user:default/ludwinghc
